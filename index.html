@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+    <script>
+        window.onload = function() {
+            function calculator() {
+                //Welcome Msj
+                alert("Welcome to the simple calculator!");
+
+                let continueCalculation = true;
+
+                while (continueCalculation) {
+                    // Initialize an array to store numbers
+                    let numbers = [];
+
+                    // Prompt the user for numbers until they choose 'n'
+                    let continueInput = true;
+
+                    while (continueInput) {
+                        let num = parseFloat(prompt("Enter a number:"));
+                        if (!isNaN(num)) {
+                            numbers.push(num);
+                            alert(`You have entered ${numbers.length} number(s) so far.`);
+                            let another = prompt(`You entered ${num}. Enter another? (y/n):`).toLowerCase();
+                            if (another === "n") {
+                                continueInput = false;
+                            } else if (another !== "y") {
+                                alert("Invalid input. Please enter 'y' or 'n'.");
+                            }
+                        } else {
+                            alert("Invalid number entered. Please try again.");
+                        }
+                    }
+
+                    if (numbers.length === 0) {
+                        alert("No numbers were entered. Reload the page to try again.");
+                        return;
+                    }
+
+                    // Prompt the user for an operation +,-,*,/
+                    let operation = prompt("What operation would you like to perform (+, -, *, /)?").toLowerCase();
+
+                    if (operation === "/" && numbers.length > 2) {
+                        alert("Error: Division operation only supports two numbers. Please reload the page and try again.");
+                        return;
+                    }
+
+                    let result = numbers[0];
+
+                    // Perform the operation on all numbers in the array
+                    if (operation === "+") {
+                        for (let i = 1; i < numbers.length; i++) {
+                            result += numbers[i];
+                        }
+                    } else if (operation === "-") {
+                        for (let i = 1; i < numbers.length; i++) {
+                            result -= numbers[i];
+                        }
+                    } else if (operation === "*") {
+                        for (let i = 1; i < numbers.length; i++) {
+                            result *= numbers[i];
+                        }
+                    } else if (operation === "/") {
+                        for (let i = 1; i < numbers.length; i++) {
+                            if (numbers[i] !== 0) {
+                                result /= numbers[i];
+                            } else {
+                                alert("Error: Division by zero is not allowed.");
+                                return;
+                            }
+                        }
+                    } else {
+                        alert("Invalid operation! Please reload the page and try again.");
+                        return;
+                    }
+
+                    // Display the result
+                    alert(`You entered ${numbers.length} number(s). Your answer is ${result}.`);
+
+                    //perform another calculation?
+                    let anotherCalculation = prompt("Would you like to perform another calculation? (y/n):").toLowerCase();
+                    if (anotherCalculation === "n") {
+                        continueCalculation = false;
+                        alert("Thank you for using the calculator! Have a wonderful day! GOOD BYE");
+                    } else if (anotherCalculation !== "y") {
+                        alert("Invalid input. Please reload the page to try again.");
+                        return;
+                    }
+                }
+            }
+
+            // Start the calculator
+            calculator();
+        };
+    </script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <p>Coding Exercise - Calculator.</p>
+</body>
+</html>
