@@ -18,10 +18,9 @@
                     let continueInput = true;
 
                     while (continueInput) {
-                        let num = parseFloat(prompt("Enter a number:"));
+                        let num = parseFloat(prompt("Welcome to the calculator. Enter a number:"));
                         if (!isNaN(num)) {
                             numbers.push(num);
-                            alert(`You have entered ${numbers.length} number(s) so far.`);
                             let another = prompt(`You entered ${num}. Enter another? (y/n):`).toLowerCase();
                             if (another === "n") {
                                 continueInput = false;
@@ -75,11 +74,8 @@
                         return;
                     }
 
-                    // Display the result
-                    alert(`You entered ${numbers.length} number(s). Your answer is ${result}.`);
-
                     //perform another calculation?
-                    let anotherCalculation = prompt("Would you like to perform another calculation? (y/n):").toLowerCase();
+                    let anotherCalculation = prompt(`You entered ${numbers.length} number(s). Your answer is ${result}. Would you like to perform another calculation? (y/n):`).toLowerCase();
                     if (anotherCalculation === "n") {
                         continueCalculation = false;
                         alert("Thank you for using the calculator! Have a wonderful day! GOOD BYE");
